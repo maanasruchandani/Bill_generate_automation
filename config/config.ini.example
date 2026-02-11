@@ -1,0 +1,10 @@
+[OTM]
+url = https://rxo.otm.com
+username = YOUR_USERNAME
+password = YOUR_PASSWORD
+
+[BROWSER]
+browser = chrome
+headless = false
+implicit_wait = 10
+explicit_wait = 20
