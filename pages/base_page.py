@@ -37,3 +37,26 @@ class BasePage:
     def navigate_to(self, url):
         self.driver.get(url)
         logger.info(f"Navigated to: {url}")
+
+    def switch_to_iframe(self, xpath):
+        iframe = self.find(xpath)
+        self.driver.switch_to.frame(iframe)
+        logger.info(f"Switched to iframe: {xpath}")
+
+    def switch_to_default_content(self):
+        self.driver.switch_to.default_content()
+        logger.info("Switched back to main content")
+
+    def switch_to_popup(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        logger.info("Switched to popup window")
+
+    def switch_to_parent_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        logger.info("Switched to parent window")
+
+    def switch_to_iframe_when_loaded(self, xpath):
+        iframe = self.find(xpath)
+        self.wait.until(lambda d: iframe.get_attribute("pageloaded") != "false")
+        self.driver.switch_to.frame(iframe)
+        logger.info(f"Switched to loaded iframe: {xpath}")
