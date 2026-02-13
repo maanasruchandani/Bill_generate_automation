@@ -18,3 +18,13 @@ def driver(config):
     d.implicitly_wait(implicit_wait)
     yield d
     d.quit()
+
+def pytest_addoption(parser):
+    parser.addoption("--skip-upload", action="store_true", default=False,
+                     help="Skip sell status CSV upload step")
+
+@pytest.fixture(scope="session")
+def run_options(request):
+    return {
+        "skip_upload": request.config.getoption("--skip-upload")
+    }

@@ -60,3 +60,7 @@ class BasePage:
         self.wait.until(lambda d: iframe.get_attribute("pageloaded") != "false")
         self.driver.switch_to.frame(iframe)
         logger.info(f"Switched to loaded iframe: {xpath}")
+
+    def switch_to_frame_by_name(self, name):
+        self.driver.switch_to.frame(name)
+        logger.info(f"Switched to frame by name: {name}")
